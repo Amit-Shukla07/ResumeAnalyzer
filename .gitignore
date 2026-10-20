@@ -1,0 +1,42 @@
+# Python Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+*.env
+.env.*
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Pytest and test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local resume uploads & documents (protect personal data)
+*.pdf
+*.docx
+*.txt
+!requirements.txt
+uploads/
+data/
+resumes/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
