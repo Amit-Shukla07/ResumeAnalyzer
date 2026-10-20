@@ -31,7 +31,7 @@ DEFAULT_SKILL_PATTERNS: dict[str, str] = {
     "React": r"(?<![a-zA-Z0-9])react(?:\.js|js)?(?![a-zA-Z0-9])",
     "Next.js": r"(?<![a-zA-Z0-9])next(?:\.js|js|\s+js)(?![a-zA-Z0-9])",
     "Node.js": r"(?<![a-zA-Z0-9])node(?:\.js|js|\s+js)(?![a-zA-Z0-9])",
-    "Express": r"(?<![a-zA-Z0-9])(?:express(?:\.js|js)|express\s+framework|express\s+backend|\bexpress\b(?!\s+(?:interest|gratitude|enthusiasm|opinion|concerns|desire|myself|ourselves|ideas|clearly|an?\b|the\b|my\b|our\b|your\b)))(?![a-zA-Z0-9])",
+    "Express": r"(?<![a-zA-Z0-9])(?:express(?:\.js|js)|express\s+framework|express\s+backend|\bexpress\b(?!\s+(?:interest|gratitude|enthusiasm|opinion|concerns|desire|myself|ourselves|ideas|clearly|an?\b|the\b|my\b|our\b|your\b)))(?![a-zA-Z0-9])",  # noqa: E501
     "SQL": r"(?<![a-zA-Z0-9])sql(?![a-zA-Z0-9])",
     "MySQL": r"(?<![a-zA-Z0-9])mysql(?![a-zA-Z0-9])",
     "PostgreSQL": r"(?<![a-zA-Z0-9])(?:postgresql|postgres)(?![a-zA-Z0-9])",

@@ -2,7 +2,6 @@
 Unit tests for the TF-IDF Matching Engine (src/matcher.py).
 """
 
-import pytest
 from src.matcher import TFIDFMatcher, compute_tfidf_similarity
 
 

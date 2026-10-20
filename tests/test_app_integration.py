@@ -5,10 +5,9 @@ Integration and UI-facing logic tests for Streamlit application (app.py).
 import io
 from pathlib import Path
 import pymupdf
-import pytest
 from streamlit.testing.v1 import AppTest
 
-from src.pdf_extractor import extract_text_from_pdf, NoExtractableTextError
+from src.pdf_extractor import extract_text_from_pdf
 from src.scoring import evaluate_match, DEFAULT_TEXT_WEIGHT, DEFAULT_SKILL_WEIGHT
 
 

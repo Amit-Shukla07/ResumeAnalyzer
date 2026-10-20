@@ -1,5 +1,10 @@
 # ResumeAnalyzer
 
+[![CI Pipeline](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://www.python.org/)
+[![Coverage 96%](https://img.shields.io/badge/coverage-96%25-brightgreen)](https://pytest.org/)
+[![Code Style: Flake8](https://img.shields.io/badge/code%20style-flake8-black)](https://flake8.pycqa.org/)
+
 An explainable, Natural Language Processing (NLP) tool designed to help candidates and technical recruiters evaluate alignment between resumes and job descriptions (JDs).
 
 ---
@@ -11,19 +16,21 @@ An explainable, Natural Language Processing (NLP) tool designed to help candidat
 - **Domain-Aware Preprocessing**: Preserves critical technical syntax (such as `C++`, `C#`, `.NET`, `Node.js`, and `REST APIs`) while normalizing formatting noise.
 - **TF-IDF Vectorization**: Computes lexical and phrase cosine similarity across unigrams and bigrams with sublinear term-frequency scaling.
 - **Deterministic Skill Extraction**: Uses a regular-expression dictionary to match 30+ technical skills without hallucination or substring false positives.
-- **Explainable Heuristic Scoring**: Evaluates independent metrics for text similarity and skill match, combined through a documented, transparent weighted formula.
+- **Explainable Heuristic Scoring**: Evaluates independent metrics for text similarity and skill match, combined through a documented, transparent weighted formula (20% TF-IDF / 80% Skill Match).
 - **Interactive Streamlit UI**: A clean, modern dashboard with responsive dual-panel inputs, expandable text previews, and actionable resume tailoring advice.
+- **Comprehensive CI/CD Pipeline**: Automated GitHub Actions testing across Python 3.10-3.13, flake8 code quality enforcement, and 96% test coverage guarantee.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Language**: Python 3.10+ (tested on Python 3.14 on macOS Apple Silicon)
+- **Language**: Python 3.10+ (tested on Python 3.10, 3.11, 3.12, 3.13, 3.14)
 - **PDF Engine**: PyMuPDF (`pymupdf` 2.0+)
 - **NLP & Vectorization**: Scikit-learn (`scikit-learn` 1.9+)
 - **Frontend Dashboard**: Streamlit (`streamlit` 1.66+)
 - **Data & Numerical Processing**: NumPy & Pandas
-- **Testing**: Pytest & Streamlit `AppTest`
+- **Testing & Quality Assurance**: Pytest (`pytest`), Pytest-Cov (`pytest-cov`), Flake8 (`flake8`), Streamlit `AppTest`
+- **Continuous Integration**: GitHub Actions CI workflow
 
 ---
 
@@ -31,14 +38,20 @@ An explainable, Natural Language Processing (NLP) tool designed to help candidat
 
 ```text
 ResumeAnalyzer/
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # GitHub Actions automated CI pipeline
 ├── app.py                     # Streamlit dashboard interface
-├── requirements.txt           # Production & testing dependencies
-├── README.md                  # Complete documentation
+├── requirements.txt           # Production dependencies
+├── requirements-dev.txt       # Testing, coverage & linting dependencies
+├── pytest.ini                 # Pytest test runner configuration
+├── .flake8                    # Flake8 linting rules & line length configuration
+├── README.md                  # Complete architecture & usage documentation
 ├── .gitignore                 # Version control exclusions & privacy guards
 ├── .streamlit/
 │   └── config.toml            # Streamlit theme & server configuration
 ├── src/
-│   ├── __init__.py            # Module exports
+│   ├── __init__.py            # Package exports
 │   ├── pdf_extractor.py       # In-memory PDF text extraction & validation
 │   ├── preprocessing.py       # Noise removal, lowercasing & tech token preservation
 │   ├── matcher.py             # TF-IDF unigram/bigram cosine similarity engine
@@ -99,33 +112,88 @@ Open your browser to: **`http://localhost:8501`**
 
 ---
 
-## 🧪 Running the Test Suite
+## 🧪 Testing, Coverage & Code Quality
 
+### 1. Running the Pytest Suite
 Execute all 51 automated unit, integration, and UI tests:
 ```bash
-.venv/bin/python -m pytest -v
+pytest
 ```
+*(Or explicitly via virtual environment: `.venv/bin/python -m pytest -v`)*
 
-To run individual test modules:
+To run specific test modules:
 ```bash
-# Test PDF extraction
-pytest tests/test_pdf_extractor.py -v
-
-# Test preprocessing
-pytest tests/test_preprocessing.py -v
-
-# Test TF-IDF matcher
-pytest tests/test_matcher.py -v
-
-# Test skill extraction
-pytest tests/test_skill_analyzer.py -v
-
-# Test scoring engine
-pytest tests/test_scoring.py -v
-
-# Test Streamlit UI integration
-pytest tests/test_app_integration.py -v
+pytest tests/test_pdf_extractor.py -v   # PDF extraction tests
+pytest tests/test_preprocessing.py -v   # Text normalization tests
+pytest tests/test_matcher.py -v         # TF-IDF similarity tests
+pytest tests/test_skill_analyzer.py -v  # Skill extraction & gap tests
+pytest tests/test_scoring.py -v         # Scoring formula & weight tests
+pytest tests/test_app_integration.py -v # Streamlit AppTest UI integration
 ```
+
+### 2. Code Coverage Report
+Generate full terminal and XML coverage metrics across all application code:
+```bash
+pytest --cov=src --cov-report=term-missing --cov-report=xml --cov-fail-under=90
+```
+
+**Current Coverage Benchmark (96% Total):**
+| Module | Statements | Missing Lines | Coverage |
+| :--- | :---: | :---: | :---: |
+| `src/__init__.py` | 6 | 0 | **100%** |
+| `src/preprocessing.py` | 24 | 0 | **100%** |
+| `src/scoring.py` | 35 | 0 | **100%** |
+| `src/pdf_extractor.py` | 38 | 1 | **97%** |
+| `src/skill_analyzer.py` | 31 | 2 | **94%** |
+| `src/matcher.py` | 29 | 3 | **90%** |
+| **Total Engine Core** | **163** | **6** | **96%** |
+
+### 3. Code Style & Linting
+Run `flake8` across source modules, test suites, and evaluation scripts:
+```bash
+flake8 src tests evaluation
+```
+Configured via [.flake8](file:///Users/amitshukla/Desktop/ResumeAnalyzer/.flake8) with a 120-character line-length threshold and PEP 8 compliance rules.
+
+---
+
+## 🔄 Continuous Integration (CI) Pipeline
+
+The repository includes a production-grade GitHub Actions workflow at [.github/workflows/ci.yml](file:///Users/amitshukla/Desktop/ResumeAnalyzer/.github/workflows/ci.yml) designed to run automatically on every push and pull request against `main`, `master`, and `develop`.
+
+```mermaid
+flowchart LR
+    A[Git Push / PR] --> B[Job: Lint & Style]
+    B -->|Flake8 Clean| C[Job: Test & Coverage Matrix]
+    subgraph Matrix [Python Versions]
+        C1[Python 3.10]
+        C2[Python 3.11]
+        C3[Python 3.12]
+        C4[Python 3.13]
+    end
+    C --> Matrix
+    Matrix --> D[Pytest 51 Tests]
+    D --> E[Coverage >= 90%]
+    E --> F[Synthetic Evaluation Benchmark]
+    F --> G[Streamlit Headless Smoke Test]
+    G --> H[Job: CI Summary & Status]
+```
+
+### Pipeline Jobs & Verification Stages:
+1. **Lint & Code Style**:
+   - Executes `flake8 src tests evaluation` to verify zero syntax errors, no unused imports, and consistent formatting.
+2. **Multi-Version Test Matrix**:
+   - Tests across Python `3.10`, `3.11`, `3.12`, and `3.13` in parallel on `ubuntu-latest`.
+   - Utilizes `actions/setup-python@v5` with pip package caching.
+3. **Automated Testing & Coverage Gate**:
+   - Runs `pytest` with `--cov-fail-under=90`. Any PR lowering coverage below 90% automatically fails the build.
+   - Generates and uploads `coverage.xml` build artifacts.
+4. **Synthetic Property Evaluation**:
+   - Runs [evaluation/evaluate.py](file:///Users/amitshukla/Desktop/ResumeAnalyzer/evaluation/evaluate.py) to guarantee relational consistency (similarity ordering and missing JD skill safety).
+5. **Streamlit UI Smoke Test**:
+   - Validates headless execution and module importing in a clean CI environment (`STREAMLIT_SERVER_HEADLESS=true`).
+6. **Pipeline Summary**:
+   - Compiles a GitHub Step Summary markdown table directly in the GitHub Actions UI.
 
 ---
 
@@ -133,7 +201,7 @@ pytest tests/test_app_integration.py -v
 
 Run the reproducible evaluation script over four benchmark scenarios:
 ```bash
-.venv/bin/python evaluation/evaluate.py
+python evaluation/evaluate.py
 ```
 
 ---

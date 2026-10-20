@@ -1,0 +1,4 @@
+# Development, Linting, and Testing Requirements
+-r requirements.txt
+pytest-cov>=4.0.0
+flake8>=6.0.0

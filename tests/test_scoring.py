@@ -7,8 +7,6 @@ from src.scoring import (
     calculate_skill_match,
     calculate_combined_score,
     evaluate_match,
-    DEFAULT_TEXT_WEIGHT,
-    DEFAULT_SKILL_WEIGHT,
 )
 
 

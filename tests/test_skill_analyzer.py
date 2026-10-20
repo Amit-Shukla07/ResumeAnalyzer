@@ -2,12 +2,10 @@
 Unit tests for Skill Extraction and Analysis (src/skill_analyzer.py).
 """
 
-import pytest
 from src.skill_analyzer import (
     SkillAnalyzer,
     extract_skills,
     analyze_skills,
-    DEFAULT_SKILL_PATTERNS,
 )
 
 

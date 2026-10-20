@@ -19,7 +19,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.scoring import evaluate_match, DEFAULT_TEXT_WEIGHT, DEFAULT_SKILL_WEIGHT
+from src.scoring import evaluate_match, DEFAULT_TEXT_WEIGHT, DEFAULT_SKILL_WEIGHT  # noqa: E402
 
 
 SYNTHETIC_DATASET = [
@@ -54,7 +54,10 @@ SYNTHETIC_DATASET = [
             "Looking for a Full-Stack Engineer with experience in TypeScript, React, Next.js, "
             "Docker, and PostgreSQL. Must be comfortable with Git and AWS deployments."
         ),
-        "expected_properties": "Moderate text similarity, partial skill match (React, Git matched; TypeScript, Next.js, Docker, PostgreSQL, AWS missing).",
+        "expected_properties": (
+            "Moderate text similarity, partial skill match (React, Git matched; "
+            "TypeScript, Next.js, Docker, PostgreSQL, AWS missing)."
+        ),
     },
     {
         "id": "scenario_3_unrelated_pair",
@@ -81,7 +84,10 @@ SYNTHETIC_DATASET = [
             "We are seeking an energetic, punctual, and highly collaborative team player "
             "with excellent presentation skills, active listening capabilities, and a positive attitude."
         ),
-        "expected_properties": "Skill match is Unavailable (None), Combined score is Unavailable (None), text similarity reflects general overlap.",
+        "expected_properties": (
+            "Skill match is Unavailable (None), Combined score is Unavailable (None), "
+            "text similarity reflects general overlap."
+        ),
     },
 ]
 
@@ -90,7 +96,10 @@ def run_evaluation() -> bool:
     """Run evaluation over all synthetic scenarios and print formatted report."""
     print("=" * 80)
     print("ResumeAnalyzer - Synthetic Evaluation Benchmark")
-    print(f"Configured Scoring Weights: Text = {int(DEFAULT_TEXT_WEIGHT * 100)}%, Skills = {int(DEFAULT_SKILL_WEIGHT * 100)}%")
+    print(
+        f"Configured Scoring Weights: Text = {int(DEFAULT_TEXT_WEIGHT * 100)}%, "
+        f"Skills = {int(DEFAULT_SKILL_WEIGHT * 100)}%"
+    )
     print("=" * 80)
 
     results = []
@@ -139,7 +148,8 @@ def run_evaluation() -> bool:
         and 0.0 < res_partial["skill_match"] < 100.0
         and res_unrelated["skill_match"] == 0.0
     )
-    print(f"  [{'PASS' if check_skill_order else 'FAIL'}] Skill match gradation: 100% (Strong) > Partial > 0% (Unrelated)")
+    status_str = 'PASS' if check_skill_order else 'FAIL'
+    print(f"  [{status_str}] Skill match gradation: 100% (Strong) > Partial > 0% (Unrelated)")
 
     # 3. No recognized skills in JD -> skill_match and combined_score must be None
     check_unavailable = (

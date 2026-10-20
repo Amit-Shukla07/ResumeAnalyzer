@@ -2,7 +2,6 @@
 Unit tests for text preprocessing module.
 """
 
-import pytest
 from src.preprocessing import preprocess_text, normalize_whitespace
 
 
@@ -47,7 +46,7 @@ class TestTextPreprocessing:
         """
         raw = "Hands-on experience with C++, C#, .NET, Node.js, and REST APIs."
         result = preprocess_text(raw)
-        
+
         # Ensure terms are not stripped or mangled
         assert "c++" in result
         assert "c#" in result

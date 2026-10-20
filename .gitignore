@@ -18,6 +18,8 @@ __pycache__/
 # Pytest and test artifacts
 .pytest_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 
 # Local resume uploads & documents (protect personal data)
@@ -25,6 +27,7 @@ htmlcov/
 *.docx
 *.txt
 !requirements.txt
+!requirements-dev.txt
 uploads/
 data/
 resumes/
