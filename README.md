@@ -2,10 +2,10 @@
 
 [![CI Pipeline](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://www.python.org/)
-[![Coverage 96%](https://img.shields.io/badge/coverage-96%25-brightgreen)](https://pytest.org/)
+[![Coverage 97%](https://img.shields.io/badge/coverage-97%25-brightgreen)](https://pytest.org/)
 [![Code Style: Flake8](https://img.shields.io/badge/code%20style-flake8-black)](https://flake8.pycqa.org/)
 
-An explainable, Natural Language Processing (NLP) tool designed to help candidates and technical recruiters evaluate alignment between resumes and job descriptions (JDs).
+An explainable, Natural Language Processing (NLP) career intelligence platform designed to help candidates and technical recruiters evaluate alignment between resumes and job descriptions (JDs).
 
 ---
 
@@ -17,8 +17,8 @@ An explainable, Natural Language Processing (NLP) tool designed to help candidat
 - **TF-IDF Vectorization**: Computes lexical and phrase cosine similarity across unigrams and bigrams with sublinear term-frequency scaling.
 - **Deterministic Skill Extraction**: Uses a regular-expression dictionary to match 30+ technical skills without hallucination or substring false positives.
 - **Explainable Heuristic Scoring**: Evaluates independent metrics for text similarity and skill match, combined through a documented, transparent weighted formula (20% TF-IDF / 80% Skill Match).
-- **Interactive Streamlit UI**: A clean, modern dashboard with responsive dual-panel inputs, expandable text previews, and actionable resume tailoring advice.
-- **Comprehensive CI/CD Pipeline**: Automated GitHub Actions testing across Python 3.10-3.13, flake8 code quality enforcement, and 96% test coverage guarantee.
+- **Executive Dark SaaS Interface**: Linear/Apple-inspired dark palette (`#0A0D14`), SVG radial progress gauge, verified resume evidence quotes, and actionable tailoring recommendations.
+- **Comprehensive CI/CD Pipeline**: Automated GitHub Actions testing across Python 3.10-3.13, flake8 code quality enforcement, and 97% test coverage guarantee.
 
 ---
 
@@ -28,6 +28,7 @@ An explainable, Natural Language Processing (NLP) tool designed to help candidat
 - **PDF Engine**: PyMuPDF (`pymupdf` 2.0+)
 - **NLP & Vectorization**: Scikit-learn (`scikit-learn` 1.9+)
 - **Frontend Dashboard**: Streamlit (`streamlit` 1.66+)
+- **Design System & Visuals**: Custom CSS tokens, SVG radial gauges, responsive flex/grid layouts
 - **Data & Numerical Processing**: NumPy & Pandas
 - **Testing & Quality Assurance**: Pytest (`pytest`), Pytest-Cov (`pytest-cov`), Flake8 (`flake8`), Streamlit `AppTest`
 - **Continuous Integration**: GitHub Actions CI workflow
@@ -49,14 +50,15 @@ ResumeAnalyzer/
 ├── README.md                  # Complete architecture & usage documentation
 ├── .gitignore                 # Version control exclusions & privacy guards
 ├── .streamlit/
-│   └── config.toml            # Streamlit theme & server configuration
+│   └── config.toml            # Streamlit dark theme & server configuration
 ├── src/
 │   ├── __init__.py            # Package exports
 │   ├── pdf_extractor.py       # In-memory PDF text extraction & validation
 │   ├── preprocessing.py       # Noise removal, lowercasing & tech token preservation
 │   ├── matcher.py             # TF-IDF unigram/bigram cosine similarity engine
 │   ├── skill_analyzer.py      # Dictionary-based skill detection & gap analysis
-│   └── scoring.py             # Independent & combined heuristic scoring engine
+│   ├── scoring.py             # Independent & combined heuristic scoring engine
+│   └── ui_components.py       # Design system tokens, SVG gauge & layout cards
 ├── tests/
 │   ├── __init__.py            # Test package marker
 │   ├── test_pdf_extractor.py  # In-memory synthetic PDF extraction tests
@@ -64,6 +66,7 @@ ResumeAnalyzer/
 │   ├── test_matcher.py        # TF-IDF similarity, NaN guards, & bounds tests
 │   ├── test_skill_analyzer.py # Boundary, substring, and case-insensitivity tests
 │   ├── test_scoring.py        # Score bounds, weights, & unavailable score tests
+│   ├── test_ui_components.py  # SVG gauge, evidence extraction & UI card tests
 │   └── test_app_integration.py# Streamlit AppTest lifecycle & integration tests
 └── evaluation/
     └── evaluate.py            # Reproducible synthetic benchmark script
@@ -115,7 +118,7 @@ Open your browser to: **`http://localhost:8501`**
 ## 🧪 Testing, Coverage & Code Quality
 
 ### 1. Running the Pytest Suite
-Execute all 51 automated unit, integration, and UI tests:
+Execute all 60 automated unit, integration, and UI tests:
 ```bash
 pytest
 ```
@@ -128,6 +131,7 @@ pytest tests/test_preprocessing.py -v   # Text normalization tests
 pytest tests/test_matcher.py -v         # TF-IDF similarity tests
 pytest tests/test_skill_analyzer.py -v  # Skill extraction & gap tests
 pytest tests/test_scoring.py -v         # Scoring formula & weight tests
+pytest tests/test_ui_components.py -v   # SVG gauge, evidence & UI component tests
 pytest tests/test_app_integration.py -v # Streamlit AppTest UI integration
 ```
 
@@ -137,16 +141,17 @@ Generate full terminal and XML coverage metrics across all application code:
 pytest --cov=src --cov-report=term-missing --cov-report=xml --cov-fail-under=90
 ```
 
-**Current Coverage Benchmark (96% Total):**
+**Current Coverage Benchmark (97% Total):**
 | Module | Statements | Missing Lines | Coverage |
 | :--- | :---: | :---: | :---: |
 | `src/__init__.py` | 6 | 0 | **100%** |
 | `src/preprocessing.py` | 24 | 0 | **100%** |
 | `src/scoring.py` | 35 | 0 | **100%** |
+| `src/ui_components.py` | 112 | 1 | **99%** |
 | `src/pdf_extractor.py` | 38 | 1 | **97%** |
 | `src/skill_analyzer.py` | 31 | 2 | **94%** |
 | `src/matcher.py` | 29 | 3 | **90%** |
-| **Total Engine Core** | **163** | **6** | **96%** |
+| **Total Engine Core** | **275** | **7** | **97%** |
 
 ### 3. Code Style & Linting
 Run `flake8` across source modules, test suites, and evaluation scripts:
