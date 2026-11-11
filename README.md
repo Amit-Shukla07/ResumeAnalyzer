@@ -1,6 +1,7 @@
 # ResumeAnalyzer
 
 [![CI Pipeline](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/Amit-Shukla07/ResumeAnalyzer/actions/workflows/ci.yml)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amit-Shukla07/ResumeAnalyzer/blob/main/ResumeAnalyzer_Colab.ipynb)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](https://www.python.org/)
 [![Coverage 97%](https://img.shields.io/badge/coverage-97%25-brightgreen)](https://pytest.org/)
 [![Code Style: Flake8](https://img.shields.io/badge/code%20style-flake8-black)](https://flake8.pycqa.org/)
@@ -43,6 +44,7 @@ ResumeAnalyzer/
 │   └── workflows/
 │       └── ci.yml             # GitHub Actions automated CI pipeline
 ├── app.py                     # Streamlit dashboard interface
+├── ResumeAnalyzer_Colab.ipynb # Complete interactive Google Colab notebook
 ├── requirements.txt           # Production dependencies
 ├── requirements-dev.txt       # Testing, coverage & linting dependencies
 ├── pytest.ini                 # Pytest test runner configuration
@@ -199,6 +201,16 @@ flowchart LR
    - Validates headless execution and module importing in a clean CI environment (`STREAMLIT_SERVER_HEADLESS=true`).
 6. **Pipeline Summary**:
    - Compiles a GitHub Step Summary markdown table directly in the GitHub Actions UI.
+
+---
+
+## 📓 Running in Google Colab
+
+For an interactive, cloud-based walkthrough containing all pipeline modules, data visualizations, synthetic benchmarks, and a custom playground from **Introduction to Conclusion**, open:
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Amit-Shukla07/ResumeAnalyzer/blob/main/ResumeAnalyzer_Colab.ipynb)
+
+Alternatively, upload [`ResumeAnalyzer_Colab.ipynb`](file:///Users/amitshukla/Desktop/ResumeAnalyzer/ResumeAnalyzer_Colab.ipynb) directly to [Google Colab](https://colab.research.google.com/) and click **Runtime > Run all**.
 
 ---
 
